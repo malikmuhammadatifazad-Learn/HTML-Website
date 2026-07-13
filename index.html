@@ -466,18 +466,49 @@
     */
     .experience-card {
       background: var(--card-bg);
-      padding: 30px;
+      padding: 28px;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       transition: background var(--transition);
+      margin-bottom: 24px;
+    }
+
+    .experience-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .experience-card .company {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .experience-card .company-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
     }
 
     .experience-card h3 {
       font-size: 20px;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
-    .experience-card .date {
+    .experience-card .company-name {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .experience-card .role-meta {
       color: var(--gray);
       font-size: 14px;
       margin-bottom: 12px;
@@ -491,6 +522,7 @@
 
     .experience-card ul li {
       margin-bottom: 6px;
+      font-size: 15px;
     }
 
     /*
@@ -623,6 +655,10 @@
       .projects-grid {
         grid-template-columns: 1fr;
       }
+
+      .experience-card {
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -666,7 +702,7 @@
       </div>
 
       <p>
-        6+ years optimizing ad campaigns &amp; budgets. 
+        6+ years optimizing ad campaigns &amp; budgets across Taboola, Meta, TikTok, and Outbrain. 
         Now I write code that scales — with the same obsession for data &amp; results.
       </p>
 
@@ -686,8 +722,8 @@
         <div>
           <h3><i class="fas fa-rocket" style="color:var(--primary);margin-right:8px;"></i> My Journey</h3>
           <p>
-            I spent 6+ years as a Media Buyer managing 7-figure ad budgets across
-            Taboola, Meta, and TikTok. I loved the data — but I wanted to <strong>build</strong>
+            I spent 6+ years as a Media Buyer managing multi-million dollar ad budgets across
+            Taboola, Meta, TikTok, and Outbrain. I loved the data — but I wanted to <strong>build</strong>
             the tools, not just use them.
           </p>
           <p style="margin-top:12px;">
@@ -722,16 +758,78 @@
     <!-- ========== EXPERIENCE ========== -->
     <section id="experience" style="margin-top:60px;">
       <h2 class="section-title">Experience</h2>
-      <p class="section-subtitle">6+ years optimizing ad campaigns.</p>
+      <p class="section-subtitle">6+ years optimizing ad campaigns across native &amp; social.</p>
 
+      <!-- Experience 1: Loop Media -->
       <div class="experience-card">
-        <h3>Senior Media Buyer — XYZ Agency</h3>
-        <p class="date">2019 – 2025</p>
+        <div class="company">
+          <div class="company-logo">LM</div>
+          <div>
+            <h3>Media Buyer</h3>
+            <div class="company-name">Loop Media · Full-time</div>
+          </div>
+        </div>
+        <p class="role-meta">May 2024 - Present · 2 yrs 3 mos · Remote</p>
         <ul>
-          <li>Managed $500K+ annual ad budget across Taboola, Meta, and TikTok</li>
-          <li>Improved ROAS by 40% through data-driven optimization</li>
-          <li>Built custom dashboards to track campaign performance in real-time</li>
-          <li>Transitioned to development to build tools for marketers</li>
+          <li>Lead paid media strategy for a portfolio of e-commerce and performance clients, overseeing $250K+/month in combined ad spend across native and social platforms</li>
+          <li>Scaled a DTC skincare brand from $20K to $180K/month on Meta &amp; TikTok while maintaining a 3.8x ROAS over 6 consecutive months</li>
+          <li>Launched and optimised Taboola/Outbrain arbitrage campaigns for a home-goods publisher, generating 120%+ ROI through targeted RSOC feed placements</li>
+          <li>Built and managed TikTok Shop ad campaigns for a fashion accessories brand, reducing CPA by 32% in Q1 2024</li>
+          <li>Developed a full-funnel retargeting architecture on Meta for a consumer electronics client, cutting cart abandonment by 28%</li>
+          <li>Reduced blended CPC by 25% across native channels via creative rotation strategy and bid-rule automation</li>
+        </ul>
+      </div>
+
+      <!-- Experience 2: WaardeX -->
+      <div class="experience-card">
+        <div class="company">
+          <div class="company-logo">WX</div>
+          <div>
+            <h3>Senior Media Buyer</h3>
+            <div class="company-name">WaardeX · Full-time</div>
+          </div>
+        </div>
+        <p class="role-meta">May 2023 - Apr 2024 · 1 yr · Remote</p>
+        <ul>
+          <li>Ran search arbitrage campaigns across Taboola, Outbrain, and Yahoo Gemini — driving paid native traffic to RSOC/AFD pages and maximising the spread between CPC paid and RPC earned</li>
+          <li>Managed keyword lists, match types, and feed partner settings to align incoming traffic intent with high-RPC search terms</li>
+          <li>Monitored GEO and device-level RPC daily, scaling profitable segments and cutting underperforming traffic to protect net margins</li>
+          <li>Tested multiple feed providers (System1, Tonic, Domain Active) side by side to identify best payout rates per traffic source</li>
+        </ul>
+      </div>
+
+      <!-- Experience 3: Healevate Media Group -->
+      <div class="experience-card">
+        <div class="company">
+          <div class="company-logo">HM</div>
+          <div>
+            <h3>Senior Media Buyer</h3>
+            <div class="company-name">Healevate Media Group · Full-time</div>
+          </div>
+        </div>
+        <p class="role-meta">Sep 2021 - Dec 2023 · 2 yrs 4 mos · Florida, United States · Remote</p>
+        <ul>
+          <li>Managed a team of 8 media buyers running campaigns across Taboola, Outbrain, and MediaGo with up to $1M/month in combined ad spend consistently achieving 120%+ ROI</li>
+          <li>Oversaw content arbitrage operations: bought native traffic and monetised through display/programmatic placements; built site whitelists/blacklists to cut wasted spend by 20%+</li>
+          <li>Implemented automated bid optimisation rules and bulk campaign upload workflows, increasing team efficiency by 40%</li>
+        </ul>
+      </div>
+
+      <!-- Experience 4: Klarecon -->
+      <div class="experience-card">
+        <div class="company">
+          <div class="company-logo">KL</div>
+          <div>
+            <h3>Senior Media Buyer</h3>
+            <div class="company-name">Klarecon · Full-time</div>
+          </div>
+        </div>
+        <p class="role-meta">Sep 2017 - Sep 2021 · 4 yrs 1 mo · Remote</p>
+        <ul>
+          <li>Started from zero, learned campaign structure, bidding strategy, and content arbitrage optimisation from the ground up across Taboola, Outbrain, Yahoo Gemini, MGID, and MediaGo</li>
+          <li>Ranked top 3 out of the full buying team within 3 months based on campaign ROI and spend efficiency</li>
+          <li>Mastered native ad fundamentals — creatives testing, site-level blacklisting, GEO and device bid adjustments to consistently beat CPC targets on content arb campaigns</li>
+          <li>Built a strong foundation in reading RPM vs. CPC spread, which became the core of the arbitrage approach carried forward throughout the career</li>
         </ul>
       </div>
     </section>
@@ -775,17 +873,7 @@
           <a href="https://stupendous-halva-ad410a.netlify.app/" target="_blank" class="project-link">Live Demo →</a>
         </div>
 
-        <!-- Project 4: Dark Mode Portfolio -->
-        <div class="project-card">
-          <div class="icon"><i class="fas fa-moon"></i></div>
-          <h3>Dark Mode Portfolio</h3>
-          <p>This very site has a dark mode toggle built with CSS variables and JavaScript events. Fully responsive and recruiter-ready.</p>
-          <div class="project-tags">
-            <span>CSS Variables</span><span>JS Events</span><span>Responsive</span>
-          </div>
-          <a href="https://malik-dev-portfolio.netlify.app/" target="_blank" class="project-link">Live Demo →</a>
-        </div>
-      </div>
+        
     </section>
 
     <!-- ========== CONTACT ========== -->
@@ -798,12 +886,12 @@
       <div class="social-links">
         <a href="https://github.com/malikmuhammadatifazad-Learn" target="_blank"><i class="fab fa-github"></i> GitHub</a>
         <a href="https://www.linkedin.com/in/malik-atif-784b7178" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-        <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="mailto:malikmuhammadatifazad@gmail.com"><i class="fas fa-envelope"></i> Email</a>
       </div>
 
       <!-- Contact Form -->
       <div class="contact-form-wrapper">
-         <form action="https://formspree.io/f/mbdnjojy" method="POST">
+        <form action="https://formspree.io/f/mbdnjojy" method="POST">
           <div>
             <label>Name</label>
             <input type="text" name="name" placeholder="Your name">
