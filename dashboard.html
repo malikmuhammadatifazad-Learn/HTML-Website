@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ad Performance Dashboard</title>
+  <style>
+    /* --- RESET --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #64748b;
+      margin-bottom: 30px;
+    }
+
+    /* --- METRIC CARDS --- */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .metric-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+
+    .metric-card .label {
+      font-size: 13px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .metric-card .value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 4px;
+    }
+
+    .metric-card .value.green { color: #22c55e; }
+    .metric-card .value.blue { color: #3b82f6; }
+    .metric-card .value.orange { color: #f59e0b; }
+    .metric-card .value.red { color: #ef4444; }
+
+    /* --- TABLE --- */
+    .table-wrapper {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      text-align: left;
+      padding: 12px 8px;
+      font-size: 13px;
+      color: #64748b;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    td {
+      padding: 12px 8px;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 14px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status.active { background: #dcfce7; color: #16a34a; }
+    .status.paused { background: #fef9c3; color: #ca8a04; }
+    .status.ended { background: #fee2e2; color: #dc2626; }
+
+    .refresh-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background 0.2s;
+    }
+
+    .refresh-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .last-updated {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-left: 16px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>📊 Ad Performance Dashboard</h1>
+  <p class="subtitle">Live campaign data simulated from your media buying experience</p>
+
+  <div style="display:flex; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+    <button class="refresh-btn" id="refreshBtn">🔄 Refresh Data</button>
+    <span class="last-updated" id="lastUpdated">Last updated: just now</span>
+  </div>
+
+  <!-- Metric Cards -->
+  <div class="metrics-grid" id="metricsGrid">
+    <div class="metric-card">
+      <div class="label">Total Spend</div>
+      <div class="value blue" id="totalSpend">$0</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">Total Revenue</div>
+      <div class="value green" id="totalRevenue">$0</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">ROAS</div>
+      <div class="value orange" id="totalRoas">0.0x</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">Active Campaigns</div>
+      <div class="value red" id="activeCampaigns">0</div>
+    </div>
+  </div>
+
+  <!-- Campaign Table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th>Platform</th>
+          <th>Spend</th>
+          <th>Revenue</th>
+          <th>ROAS</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <tr><td colspan="6" class="loading">Loading campaign data...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  // ============================================================
+  // SIMULATED API DATA (mimics what you'd get from Meta/Taboola API)
+  // ============================================================
+
+  const platforms = ['Meta', 'TikTok', 'Taboola', 'Outbrain'];
+  const statuses = ['Active', 'Active', 'Active', 'Paused', 'Ended'];
+
+  function generateCampaigns() {
+    const campaigns = [];
+    const names = ['Brand Awareness', 'Conversion', 'Retargeting', 'Prospecting', 'Arbitrage', 'RSOC Feed', 'AFD Test'];
+
+    for (let i = 0; i < 6; i++) {
+      const spend = Math.round((Math.random() * 8000 + 2000) / 100) * 100;
+      const revenue = Math.round(spend * (Math.random() * 1.5 + 1.2));
+      const roas = (revenue / spend);
+      campaigns.push({
+        name: names[i % names.length] + ' ' + (i + 1),
+        platform: platforms[i % platforms.length],
+        spend: spend,
+        revenue: revenue,
+        roas: roas,
+        status: statuses[i % statuses.length]
+      });
+    }
+    return campaigns;
+  }
+
+  function formatCurrency(amount) {
+    return '$' + amount.toLocaleString();
+  }
+
+  function renderDashboard() {
+    const campaigns = generateCampaigns();
+
+    // Calculate totals
+    let totalSpend = 0, totalRevenue = 0, active = 0;
+    campaigns.forEach(c => {
+      totalSpend += c.spend;
+      totalRevenue += c.revenue;
+      if (c.status === 'Active') active++;
+    });
+    const totalRoas = totalSpend > 0 ? (totalRevenue / totalSpend) : 0;
+
+    // Update metric cards
+    document.getElementById('totalSpend').textContent = formatCurrency(totalSpend);
+    document.getElementById('totalRevenue').textContent = formatCurrency(totalRevenue);
+    document.getElementById('totalRoas').textContent = totalRoas.toFixed(2) + 'x';
+    document.getElementById('activeCampaigns').textContent = active;
+
+    // Update table
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+    campaigns.forEach(c => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td><strong>${c.name}</strong></td>
+        <td>${c.platform}</td>
+        <td>${formatCurrency(c.spend)}</td>
+        <td>${formatCurrency(c.revenue)}</td>
+        <td>${c.roas.toFixed(2)}x</td>
+        <td><span class="status ${c.status.toLowerCase()}">${c.status}</span></td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    // Update timestamp
+    document.getElementById('lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+  }
+
+  // Initial render
+  renderDashboard();
+
+  // Refresh on button click
+  document.getElementById('refreshBtn').addEventListener('click', function() {
+    this.textContent = '⏳ Loading...';
+    this.disabled = true;
+    setTimeout(() => {
+      renderDashboard();
+      this.textContent = '🔄 Refresh Data';
+      this.disabled = false;
+    }, 500);
+  });
+</script>
+
+</body>
+</html>
