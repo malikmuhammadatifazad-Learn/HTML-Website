@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<!-- 
+  ============================================================
+  DOCTYPE: Tells the browser this is HTML5.
+  Every professional page starts with this.
+  ============================================================
+-->
+<html lang="en">
+  <!--
+    ============================================================
+    html lang="en": Sets the language to English.
+    Helps with accessibility and SEO.
+    ============================================================
+  -->
+<head>
+  <!--
+    ============================================================
+    <head>: Contains meta-information about the page.
+    Not visible on the page itself, but crucial for SEO,
+    styling, and functionality.
+    ============================================================
+  -->
+  
+  <!-- Character encoding — ensures all characters display correctly -->
+  <meta charset="UTF-8">
+  
+  <!--
+    ============================================================
+    viewport: Makes the page responsive on mobile devices.
+    Without this, your page will look zoomed out on phones.
+    ============================================================
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!--
+    ============================================================
+    title: Shows in the browser tab.
+    Also used by search engines (SEO).
+    ============================================================
+  -->
+  <title>Malik Atif | Media Buyer → Developer</title>
+
+  <!--
+    ============================================================
+    FONTS: Google Fonts (Inter).
+    Modern, clean, professional font.
+    ============================================================
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+
+  <!--
+    ============================================================
+    FONT AWESOME: Icons for social links, tech stack, etc.
+    Free icon library.
+    ============================================================
+  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* 
+      ============================================================
+      CSS: Everything inside here controls how the page LOOKS.
+      Colors, fonts, spacing, layout, animations.
+      ============================================================
+    */
+
+    /* --- RESET & BASE --- */
+    /* 
+      * {
+        Removes default browser margins/paddings from all elements.
+        Makes the page look consistent across browsers.
+      }
+    */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* 
+      :root = CSS variables (custom properties).
+      Changes once here, applies everywhere.
+      We define a "light" theme by default.
+    */
+    :root {
+      --bg: #f8fafc;           /* background color */
+      --text: #0f172a;         /* text color */
+      --primary: #2563eb;      /* main brand color (blue) */
+      --primary-light: #3b82f6;
+      --gray: #64748b;
+      --light-gray: #e2e8f0;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      --radius: 12px;
+      --transition: 0.3s ease;
+    }
+
+    /* 
+      body: Main page styling.
+      font-family: uses Inter font from Google.
+      background: uses --bg variable.
+      color: uses --text variable.
+      line-height: 1.6 makes text easier to read.
+    */
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background var(--transition), color var(--transition);
+      padding: 0 20px;
+    }
+
+    /*
+      Container: Centers content and limits max width.
+      max-width: 1100px means it won't stretch too wide on big screens.
+      margin: 0 auto centers it horizontally.
+    */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /*
+      ============================================================
+      DARK MODE: When body has class "dark", these variables override.
+      ============================================================
+    */
+    body.dark {
+      --bg: #0f172a;
+      --text: #f1f5f9;
+      --card-bg: #1e293b;
+      --light-gray: #334155;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    /*
+      ============================================================
+      HEADER / NAV
+      ============================================================
+    */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--light-gray);
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--text);
+      font-weight: 300;
+    }
+
+    /* --- DARK MODE TOGGLE BUTTON --- */
+    .toggle-btn {
+      background: var(--light-gray);
+      border: none;
+      padding: 10px 18px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 16px;
+      color: var(--text);
+      transition: background var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toggle-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* 
+      ============================================================
+      HERO SECTION: The big introduction area.
+      ============================================================
+    */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 40px 0 60px;
+    }
+
+    /* 
+      Avatar: A circular image placeholder.
+      background: gradient makes it pop.
+    */
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: white;
+      font-weight: 700;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 32px rgba(37, 99, 235, 0.25);
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 .highlight {
+      color: var(--primary);
+    }
+
+    /* 
+      Typewriter text: The part that dynamically changes.
+      We use a span with a blinking cursor effect.
+    */
+    .typing-wrapper {
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--gray);
+      margin-top: 8px;
+    }
+
+    #typed-text {
+      color: var(--primary);
+      font-weight: 600;
+      border-right: 2px solid var(--primary);
+      padding-right: 6px;
+      animation: blink 0.8s step-end infinite;
+    }
+
+    /* Blinking cursor animation */
+    @keyframes blink {
+      0%, 100% { border-color: var(--primary); }
+      50% { border-color: transparent; }
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 20px auto 30px;
+      font-size: 18px;
+      color: var(--gray);
+    }
+
+    /* 
+      CTA Buttons: Call-to-action.
+      .btn-primary = filled blue button.
+      .btn-outline = bordered button.
+    */
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 12px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: all var(--transition);
+      font-size: 16px;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-outline {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /*
+      ============================================================
+      SECTION TITLES
+      ============================================================
+    */
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      color: var(--gray);
+      margin-bottom: 32px;
+      font-size: 17px;
+    }
+
+    /*
+      ============================================================
+      ABOUT SECTION
+      ============================================================
+    */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: background var(--transition);
+    }
+
+    .about-grid h3 {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .about-grid ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .about-grid ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--light-gray);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .about-grid ul li i {
+      color: var(--primary);
+      width: 20px;
+    }
+
+    /*
+      ============================================================
+      TECH STACK: Skill badges
+      ============================================================
+    */
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .badge {
+      background: var(--light-gray);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      transition: background var(--transition);
+    }
+
+    .badge:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /*
+      ============================================================
+      PROJECTS / PORTFOLIO
+      ============================================================
+    */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--primary);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .project-card .icon {
+      font-size: 32px;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .project-card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .project-card p {
+      color: var(--gray);
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .project-tags span {
+      background: var(--light-gray);
+      padding: 2px 12px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray);
+    }
+
+    .project-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    /*
+      ============================================================
+      CONTACT / SOCIAL
+      ============================================================
+    */
+    .social-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border-radius: 50px;
+      background: var(--card-bg);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .social-links a:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      color: var(--primary);
+    }
+
+    .social-links a i {
+      font-size: 18px;
+    }
+
+    /*
+      ============================================================
+      FOOTER
+      ============================================================
+    */
+    footer {
+      text-align: center;
+      padding: 40px 0 20px;
+      border-top: 1px solid var(--light-gray);
+      margin-top: 40px;
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    /*
+      ============================================================
+      RESPONSIVE: Makes it look good on mobile.
+      ============================================================
+    */
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .hero {
+        padding: 20px 0 30px;
+      }
+
+      .container {
+        padding: 20px 10px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .social-links a {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    ============================================================
+    BODY: Everything visible on the page goes here.
+    ============================================================
+  -->
+
+  <div class="container">
+
+    <!-- ========== HEADER ========== -->
+    <header>
+      <div class="logo">
+        Malik<span>.dev</span>
+      </div>
+      <button class="toggle-btn" id="darkModeToggle">
+        <i class="fas fa-moon"></i> <span id="toggleLabel">Dark</span>
+      </button>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+      <!-- Avatar: Initials of your name -->
+      <div class="avatar">JD</div>
+
+      <h1>
+        From <span class="highlight">Media Buyer</span> to<br>
+        <span class="highlight">Developer</span>
+      </h1>
+      
+
+      <!--
+        ============================================================
+        TYPING EFFECT: The text inside #typed-text changes via JS.
+        ============================================================
+      -->
+      <div class="typing-wrapper">
+        I build <span id="typed-text"></span>
+      </div>
+
+      <p>
+        6+ years optimizing ad campaigns &amp; budgets. 
+        Now I write code that scales — with the same obsession for data &amp; results.
+      </p>
+
+      <div class="btn-group">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Let's Talk</a>
+      </div>
+    </section>
+    <section id="experience" style="margin-top:60px;">
+  <h2 class="section-title">Experience</h2>
+  <p class="section-subtitle">6+ years optimizing ad campaigns.</p>
+
+  <div style="background:var(--card-bg);padding:30px;border-radius:var(--radius);box-shadow:var(--shadow);">
+    <h3>Senior Media Buyer — Loop Media</h3>
+    <p style="color:var(--gray);font-size:14px;">2024 – 2026</p>
+    <ul style="margin-top:12px;list-style:disc;padding-left:20px;">
+      <li>Managed $500K+ Monthly ad budget across Taboola, Meta, and TikTok</li>
+      <li>Improved ROAS by 40% through data-driven optimization</li>
+      <li>Built custom dashboards to track campaign performance in real-time</li>
+      <li>Transitioned to development to build tools for marketers</li>
+    </ul>
+  </div>
+</section>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">Why I made the switch — and what I bring.</p>
+
+      <div class="about-grid">
+        <!-- Left column -->
+        <div>
+          <h3><i class="fas fa-rocket" style="color:var(--primary);margin-right:8px;"></i> My Journey</h3>
+          <p>
+            I spent 6+ years as a Media Buyer managing 7-figure ad budgets across
+            Facebook, Google, and TikTok. I loved the data, but I wanted to <strong>build</strong>
+            the tools, not just use them.
+          </p>
+          <p style="margin-top:12px;">
+            Now I combine <strong>marketing intuition</strong> with <strong>engineering precision</strong>
+            to build products that actually convert.
+          </p>
+        </div>
+
+        <!-- Right column -->
+        <div>
+          <h3><i class="fas fa-code" style="color:var(--primary);margin-right:8px;"></i> Tech Stack</h3>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> HTML5 &amp; CSS3 (Flexbox, Grid)</li>
+            <li><i class="fas fa-check-circle"></i> JavaScript (ES6+, DOM, Fetch)</li>
+            <li><i class="fas fa-check-circle"></i> React (Component-based)</li>
+            <li><i class="fas fa-check-circle"></i> Python (Flask, Pandas)</li>
+            <li><i class="fas fa-check-circle"></i> SQL (PostgreSQL, MySQL)</li>
+            <li><i class="fas fa-check-circle"></i> Git / GitHub (Version control)</li>
+          </ul>
+
+          <!-- Badges -->
+          <div class="tech-badges">
+            <span class="badge">#MediaBuyer</span>
+            <span class="badge">#DataDriven</span>
+            <span class="badge">#GrowthMindset</span>
+            <span class="badge">#Builder</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROJECTS ========== -->
+    <section id="projects" style="margin-top:60px;">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">Real tools I've built — all from scratch.</p>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="icon"><i class="fas fa-chart-line"></i></div>
+          <h3>CTR Analyzer</h3>
+          <p>Live CTR calculator with performance alerts. Built with pure HTML/CSS/JS — exactly what you learned in Lesson 9.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          <a href="#" class="project-link">Live Demo →</a>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="icon"><i class="fas fa-ad"></i></div>
+          <h3>Ad Budget Simulator</h3>
+          <p>Simulate daily spend across 7 days with loop logic. Automatically calculates totals and daily breakdowns.</p>
+          <div class="project-tags">
+            <span>JavaScript</span><span>Loops</span><span>DOM</span>
+          </div>
+          <a href="#" class="project-link">Live Demo →</a>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="icon"><i class="fas fa-moon"></i></div>
+          <h3>Dark Mode Toggle</h3>
+          <p>This very site has a dark mode toggle — built with CSS variables and a single JavaScript event listener.</p>
+          <div class="project-tags">
+            <span>CSS Variables</span><span>JS Events</span>
+          </div>
+          <a href="#" class="project-link">Live Demo →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact" style="margin-top:60px; text-align:center;">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-subtitle">
+        Open to junior dev roles, freelance projects, or just a coffee chat.
+      </p>
+
+      <div class="social-links">
+        <a href="#"><i class="fab fa-github"></i> GitHub</a>
+        <a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+        <a href="#"><i class="fab fa-x-twitter"></i> Twitter</a>
+        <a href="#"><i class="fas fa-envelope"></i> Email</a>
+      </div>
+
+      <!-- Contact Form -->
+<div style="
+  max-width: 500px;
+  margin: 30px auto 0;
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: left;
+">
+  <form action="//formspree.io/f/mbdnjojy" method="POST">
+    
+  <div style="margin-bottom: 16px;">
+    <label style="display:block;font-weight:600;margin-bottom:4px;">Name</label>
+    <input type="text" name="name" placeholder="Your name" style="
+      width:100%;
+      padding:10px;
+      border:1px solid var(--light-gray);
+      border-radius:6px;
+      background:var(--bg);
+      color:var(--text);
+    ">
+  </div>
+  <div style="margin-bottom: 16px;">
+    <label style="display:block;font-weight:600;margin-bottom:4px;">Email</label>
+    <input type="email" name="email" placeholder="you@example.com" style="
+      width:100%;
+      padding:10px;
+      border:1px solid var(--light-gray);
+      border-radius:6px;
+      background:var(--bg);
+      color:var(--text);
+    ">
+  </div>
+  <div style="margin-bottom: 16px;">
+    <label style="display:block;font-weight:600;margin-bottom:4px;">Message</label>
+    <textarea name="message" rows="4" placeholder="Tell me about your project..." style="
+      width:100%;
+      padding:10px;
+      border:1px solid var(--light-gray);
+      border-radius:6px;
+      background:var(--bg);
+      color:var(--text);
+      resize:vertical;
+    "></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary" style="width:100%;">
+    <i class="fas fa-paper-plane"></i> Send Message
+  </button>
+</form>
+</div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+      &copy; 2026 Malik Atif · Built with <i class="fas fa-heart" style="color:#ef4444;"></i> and lots of coffee ☕
+    </footer>
+
+  </div>
+  <!-- ========== END .container ========== -->
+
+  <!--
+    ============================================================
+    JAVASCRIPT: All interactivity.
+    Placed at the bottom so the page loads first.
+    ============================================================
+  -->
+  <script>
+    /*
+      ============================================================
+      1. DARK MODE TOGGLE
+      ============================================================
+    */
+    // Get the button and the label inside it
+    const toggleBtn = document.getElementById('darkModeToggle');
+    const toggleLabel = document.getElementById('toggleLabel');
+
+    // Listen for a click on the button
+    toggleBtn.addEventListener('click', function() {
+      // Toggle the class "dark" on the <body> element
+      document.body.classList.toggle('dark');
+
+      // Change the button text/icon based on dark mode state
+      if (document.body.classList.contains('dark')) {
+        toggleLabel.textContent = 'Light';
+        toggleBtn.querySelector('i').className = 'fas fa-sun';
+      } else {
+        toggleLabel.textContent = 'Dark';
+        toggleBtn.querySelector('i').className = 'fas fa-moon';
+      }
+    });
+
+    /*
+      ============================================================
+      2. TYPING / TYPEWRITER EFFECT
+      ============================================================
+    */
+    // Array of phrases to cycle through
+    const phrases = [
+      'landing pages that convert.',
+      'ad dashboards with live data.',
+      'tools for growth marketers.',
+      'clean, maintainable code.'
+    ];
+
+    let currentIndex = 0;        // Which phrase we're on
+    let charIndex = 0;          // Which character we're at
+    let isDeleting = false;     // Are we erasing or typing?
+    const typedElement = document.getElementById('typed-text');
+
+    function typeEffect() {
+      const currentPhrase = phrases[currentIndex];
+
+      if (isDeleting) {
+        // Remove one character
+        typedElement.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        // Add one character
+        typedElement.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      // Speed control (ms)
+      let speed = isDeleting ? 40 : 100;
+
+      // If we've completed typing a phrase
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        speed = 2000; // Pause before deleting
+        isDeleting = true;
+      }
+
+      // If we've fully deleted the phrase
+      if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        currentIndex = (currentIndex + 1) % phrases.length; // Move to next phrase
+        speed = 400; // Short pause before typing next
+      }
+
+      // Call this function again after 'speed' milliseconds
+      setTimeout(typeEffect, speed);
+    }
+
+    // Start the typewriter effect when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      typeEffect();
+    });
+
+    /*
+      ============================================================
+      3. CONSOLE WELCOME (for recruiters who inspect the page)
+      ============================================================
+    */
+    console.log('%c👋 Hey, recruiter!', 'font-size:24px; font-weight:bold; color:#2563eb;');
+    console.log('%cI built this page from scratch. Want to see my code? Let\'s talk.', 'font-size:16px;');
+  </script>
+
+</body>
+</html>
