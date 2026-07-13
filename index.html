@@ -395,7 +395,7 @@
     */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 24px;
       margin-top: 20px;
     }
@@ -461,6 +461,40 @@
 
     /*
       ============================================================
+      EXPERIENCE SECTION
+      ============================================================
+    */
+    .experience-card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: background var(--transition);
+    }
+
+    .experience-card h3 {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .experience-card .date {
+      color: var(--gray);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .experience-card ul {
+      list-style: disc;
+      padding-left: 20px;
+      color: var(--text);
+    }
+
+    .experience-card ul li {
+      margin-bottom: 6px;
+    }
+
+    /*
+      ============================================================
       CONTACT / SOCIAL
       ============================================================
     */
@@ -495,6 +529,48 @@
 
     .social-links a i {
       font-size: 18px;
+    }
+
+    /*
+      ============================================================
+      CONTACT FORM
+      ============================================================
+    */
+    .contact-form-wrapper {
+      max-width: 500px;
+      margin: 30px auto 0;
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: left;
+      transition: background var(--transition);
+    }
+
+    .contact-form-wrapper label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .contact-form-wrapper input,
+    .contact-form-wrapper textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--light-gray);
+      border-radius: 6px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: inherit;
+      margin-bottom: 16px;
+    }
+
+    .contact-form-wrapper textarea {
+      resize: vertical;
+    }
+
+    .contact-form-wrapper button {
+      width: 100%;
     }
 
     /*
@@ -543,6 +619,10 @@
         padding: 8px 16px;
         font-size: 14px;
       }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -559,7 +639,7 @@
     <!-- ========== HEADER ========== -->
     <header>
       <div class="logo">
-        Malik<span>.dev</span>
+        MA<span>.dev</span>
       </div>
       <button class="toggle-btn" id="darkModeToggle">
         <i class="fas fa-moon"></i> <span id="toggleLabel">Dark</span>
@@ -569,13 +649,12 @@
     <!-- ========== HERO ========== -->
     <section class="hero">
       <!-- Avatar: Initials of your name -->
-      <div class="avatar">JD</div>
+      <div class="avatar">MA</div>
 
       <h1>
         From <span class="highlight">Media Buyer</span> to<br>
         <span class="highlight">Developer</span>
       </h1>
-      
 
       <!--
         ============================================================
@@ -596,21 +675,6 @@
         <a href="#contact" class="btn btn-outline">Let's Talk</a>
       </div>
     </section>
-    <section id="experience" style="margin-top:60px;">
-  <h2 class="section-title">Experience</h2>
-  <p class="section-subtitle">6+ years optimizing ad campaigns.</p>
-
-  <div style="background:var(--card-bg);padding:30px;border-radius:var(--radius);box-shadow:var(--shadow);">
-    <h3>Senior Media Buyer — Loop Media</h3>
-    <p style="color:var(--gray);font-size:14px;">2024 – 2026</p>
-    <ul style="margin-top:12px;list-style:disc;padding-left:20px;">
-      <li>Managed $500K+ Monthly ad budget across Taboola, Meta, and TikTok</li>
-      <li>Improved ROAS by 40% through data-driven optimization</li>
-      <li>Built custom dashboards to track campaign performance in real-time</li>
-      <li>Transitioned to development to build tools for marketers</li>
-    </ul>
-  </div>
-</section>
 
     <!-- ========== ABOUT ========== -->
     <section id="about">
@@ -623,7 +687,7 @@
           <h3><i class="fas fa-rocket" style="color:var(--primary);margin-right:8px;"></i> My Journey</h3>
           <p>
             I spent 6+ years as a Media Buyer managing 7-figure ad budgets across
-            Facebook, Google, and TikTok. I loved the data, but I wanted to <strong>build</strong>
+            Taboola, Meta, and TikTok. I loved the data — but I wanted to <strong>build</strong>
             the tools, not just use them.
           </p>
           <p style="margin-top:12px;">
@@ -655,43 +719,71 @@
       </div>
     </section>
 
+    <!-- ========== EXPERIENCE ========== -->
+    <section id="experience" style="margin-top:60px;">
+      <h2 class="section-title">Experience</h2>
+      <p class="section-subtitle">6+ years optimizing ad campaigns.</p>
+
+      <div class="experience-card">
+        <h3>Senior Media Buyer — XYZ Agency</h3>
+        <p class="date">2019 – 2025</p>
+        <ul>
+          <li>Managed $500K+ annual ad budget across Taboola, Meta, and TikTok</li>
+          <li>Improved ROAS by 40% through data-driven optimization</li>
+          <li>Built custom dashboards to track campaign performance in real-time</li>
+          <li>Transitioned to development to build tools for marketers</li>
+        </ul>
+      </div>
+    </section>
+
     <!-- ========== PROJECTS ========== -->
     <section id="projects" style="margin-top:60px;">
       <h2 class="section-title">Projects</h2>
       <p class="section-subtitle">Real tools I've built — all from scratch.</p>
 
       <div class="projects-grid">
-        <!-- Project 1 -->
+        <!-- Project 1: CTR Analyzer -->
         <div class="project-card">
           <div class="icon"><i class="fas fa-chart-line"></i></div>
           <h3>CTR Analyzer</h3>
-          <p>Live CTR calculator with performance alerts. Built with pure HTML/CSS/JS — exactly what you learned in Lesson 9.</p>
+          <p>Live CTR calculator with performance alerts. Enter impressions and clicks — get instant CTR with actionable feedback.</p>
           <div class="project-tags">
             <span>HTML</span><span>CSS</span><span>JavaScript</span>
           </div>
-          <a href="#" class="project-link">Live Demo →</a>
+          <a href="https://willowy-rolypoly-9c35cf.netlify.app/" target="_blank" class="project-link">Live Demo →</a>
         </div>
 
-        <!-- Project 2 -->
+        <!-- Project 2: Ad Budget Simulator -->
         <div class="project-card">
           <div class="icon"><i class="fas fa-ad"></i></div>
           <h3>Ad Budget Simulator</h3>
-          <p>Simulate daily spend across 7 days with loop logic. Automatically calculates totals and daily breakdowns.</p>
+          <p>Simulate daily spend across any number of days. Enter daily budget and days — see total spend and daily breakdown.</p>
           <div class="project-tags">
             <span>JavaScript</span><span>Loops</span><span>DOM</span>
           </div>
-          <a href="#" class="project-link">Live Demo →</a>
+          <a href="https://voluble-torte-b7a678.netlify.app/" target="_blank" class="project-link">Live Demo →</a>
         </div>
 
-        <!-- Project 3 -->
+        <!-- Project 3: ROAS Calculator -->
+        <div class="project-card">
+          <div class="icon"><i class="fas fa-calculator"></i></div>
+          <h3>ROAS Calculator</h3>
+          <p>Calculate Return on Ad Spend instantly. Enter revenue and ad cost — get your ROAS percentage with performance rating.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          <a href="https://stupendous-halva-ad410a.netlify.app/" target="_blank" class="project-link">Live Demo →</a>
+        </div>
+
+        <!-- Project 4: Dark Mode Portfolio -->
         <div class="project-card">
           <div class="icon"><i class="fas fa-moon"></i></div>
-          <h3>Dark Mode Toggle</h3>
-          <p>This very site has a dark mode toggle — built with CSS variables and a single JavaScript event listener.</p>
+          <h3>Dark Mode Portfolio</h3>
+          <p>This very site has a dark mode toggle built with CSS variables and JavaScript events. Fully responsive and recruiter-ready.</p>
           <div class="project-tags">
-            <span>CSS Variables</span><span>JS Events</span>
+            <span>CSS Variables</span><span>JS Events</span><span>Responsive</span>
           </div>
-          <a href="#" class="project-link">Live Demo →</a>
+          <a href="https://malik-dev-portfolio.netlify.app/" target="_blank" class="project-link">Live Demo →</a>
         </div>
       </div>
     </section>
@@ -704,63 +796,31 @@
       </p>
 
       <div class="social-links">
-        <a href="#"><i class="fab fa-github"></i> GitHub</a>
-        <a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-        <a href="#"><i class="fab fa-x-twitter"></i> Twitter</a>
-        <a href="#"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://github.com/malikmuhammadatifazad-Learn" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/malik-atif-784b7178" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+        <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i> Email</a>
       </div>
 
       <!-- Contact Form -->
-<div style="
-  max-width: 500px;
-  margin: 30px auto 0;
-  background: var(--card-bg);
-  padding: 30px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  text-align: left;
-">
-  <form action="//formspree.io/f/mbdnjojy" method="POST">
-    
-  <div style="margin-bottom: 16px;">
-    <label style="display:block;font-weight:600;margin-bottom:4px;">Name</label>
-    <input type="text" name="name" placeholder="Your name" style="
-      width:100%;
-      padding:10px;
-      border:1px solid var(--light-gray);
-      border-radius:6px;
-      background:var(--bg);
-      color:var(--text);
-    ">
-  </div>
-  <div style="margin-bottom: 16px;">
-    <label style="display:block;font-weight:600;margin-bottom:4px;">Email</label>
-    <input type="email" name="email" placeholder="you@example.com" style="
-      width:100%;
-      padding:10px;
-      border:1px solid var(--light-gray);
-      border-radius:6px;
-      background:var(--bg);
-      color:var(--text);
-    ">
-  </div>
-  <div style="margin-bottom: 16px;">
-    <label style="display:block;font-weight:600;margin-bottom:4px;">Message</label>
-    <textarea name="message" rows="4" placeholder="Tell me about your project..." style="
-      width:100%;
-      padding:10px;
-      border:1px solid var(--light-gray);
-      border-radius:6px;
-      background:var(--bg);
-      color:var(--text);
-      resize:vertical;
-    "></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary" style="width:100%;">
-    <i class="fas fa-paper-plane"></i> Send Message
-  </button>
-</form>
-</div>
+      <div class="contact-form-wrapper">
+         <form action="https://formspree.io/f/mbdnjojy" method="POST">
+          <div>
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Your name">
+          </div>
+          <div>
+            <label>Email</label>
+            <input type="email" name="email" placeholder="you@example.com">
+          </div>
+          <div>
+            <label>Message</label>
+            <textarea name="message" rows="4" placeholder="Tell me about your project..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
     </section>
 
     <!-- ========== FOOTER ========== -->
