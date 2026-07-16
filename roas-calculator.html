@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROAS Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #f4f4f4;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 20px;
+      background: white;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #2563eb;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📈 ROAS Calculator</h1>
+
+  <label>Revenue ($):</label>
+  <input type="number" id="revenue" placeholder="e.g. 5000">
+
+  <label>Ad Spend ($):</label>
+  <input type="number" id="spend" placeholder="e.g. 1000">
+
+  <button id="calcBtn">Calculate ROAS</button>
+
+  <p id="result"></p>
+
+  <a href="index.html" class="back-link">← Back to Portfolio</a>
+
+  <script>
+    document.getElementById("calcBtn").addEventListener("click", function() {
+      var revenue = Number(document.getElementById("revenue").value);
+      var spend = Number(document.getElementById("spend").value);
+
+      if (spend <= 0) {
+        document.getElementById("result").innerHTML = "❌ Ad spend must be greater than 0!";
+        return;
+      }
+
+      var roas = revenue / spend;
+
+      var message = "ROAS = " + roas.toFixed(2) + "x";
+
+      if (roas >= 4) {
+        message = message + " 🚀 Excellent!";
+      } else if (roas >= 2) {
+        message = message + " 👍 Good";
+      } else if (roas >= 1) {
+        message = message + " ⚠️ Break-even";
+      } else {
+        message = message + " ❌ Losing money!";
+      }
+
+      document.getElementById("result").innerHTML = message;
+    });
+  </script>
+
+</body>
+</html>

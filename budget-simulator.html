@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ad Budget Simulator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #f4f4f4;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    #result {
+      margin-top: 20px;
+      padding: 20px;
+      background: white;
+      border-radius: 6px;
+      line-height: 1.8;
+    }
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #2563eb;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💰 Ad Budget Simulator</h1>
+
+  <label>Daily Budget ($):</label>
+  <input type="number" id="dailyBudget" placeholder="e.g. 100">
+
+  <label>Number of Days:</label>
+  <input type="number" id="days" placeholder="e.g. 7">
+
+  <button id="calcBtn">Calculate</button>
+
+  <p id="result"></p>
+
+  <a href="index.html" class="back-link">← Back to Portfolio</a>
+
+  <script>
+    document.getElementById("calcBtn").addEventListener("click", function() {
+      var dailyBudget = Number(document.getElementById("dailyBudget").value);
+      var days = Number(document.getElementById("days").value);
+
+      if (dailyBudget <= 0 || days <= 0) {
+        document.getElementById("result").innerHTML = "❌ Please enter valid numbers!";
+        return;
+      }
+
+      var total = 0;
+      var output = "<strong>Daily Breakdown:</strong><br>";
+
+      for (var day = 1; day <= days; day++) {
+        total = total + dailyBudget;
+        output = output + "Day " + day + ": $" + total + "<br>";
+      }
+
+      output = output + "<br><strong>Total Spend: $" + total + "</strong>";
+
+      document.getElementById("result").innerHTML = output;
+    });
+  </script>
+
+</body>
+</html>

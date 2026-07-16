@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTR Analyzer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #f4f4f4;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 20px;
+      background: white;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #2563eb;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📊 CTR Analyzer</h1>
+
+  <label>Impressions:</label>
+  <input type="number" id="impressions" placeholder="e.g. 10000">
+
+  <label>Clicks:</label>
+  <input type="number" id="clicks" placeholder="e.g. 500">
+
+  <button id="calcBtn">Calculate CTR</button>
+
+  <p id="result"></p>
+
+  <a href="index.html" class="back-link">← Back to Portfolio</a>
+
+  <script>
+    document.getElementById("calcBtn").addEventListener("click", function() {
+      var impressions = Number(document.getElementById("impressions").value);
+      var clicks = Number(document.getElementById("clicks").value);
+
+      if (clicks > impressions) {
+        document.getElementById("result").innerHTML = "❌ Clicks can't be more than Impressions!";
+        return;
+      }
+
+      var ctr = (clicks / impressions) * 100;
+
+      var message = "CTR = " + ctr.toFixed(2) + "%";
+
+      if (ctr > 5) {
+        message = message + " 🚀 Great CTR!";
+      } else if (ctr >= 2) {
+        message = message + " 👍 Average CTR";
+      } else {
+        message = message + " ⚠️ Below average. Optimize!";
+      }
+
+      document.getElementById("result").innerHTML = message;
+    });
+  </script>
+
+</body>
+</html>
