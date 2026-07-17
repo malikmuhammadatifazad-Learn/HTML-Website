@@ -16,10 +16,12 @@ export default function LoginPage() {
     setError('');
 
     const result = await signIn('credentials', {
+      
       email,
       password,
       redirect: false,
     });
+    console.log(result);
 
     if (result?.error) {
       setError('Invalid email or password');
