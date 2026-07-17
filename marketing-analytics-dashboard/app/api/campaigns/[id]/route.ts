@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 
 type RouteContext = {
-  params: Promise<{
-    id: string
-  }>
+  params: Promise<{ id: string }>
 }
 
 export async function DELETE(
@@ -12,11 +12,19 @@ export async function DELETE(
   context: RouteContext
 ) {
   try {
-    const { id } = await context.params;
-    console.log('Deleting campaign with ID:', id);
+    const session = await getServerSession(authOptions);
 
-    const existing = await prisma.campaign.findUnique({
-      where: { id },
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const { id } = await context.params;
+
+    const existing = await prisma.campaign.findFirst({
+      where: {
+        id,
+        userId: session.user.id,
+      },
     });
 
     if (!existing) {
@@ -39,11 +47,20 @@ export async function PUT(
   context: RouteContext
 ) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const { id } = await context.params;
     const body = await request.json();
 
-    const existing = await prisma.campaign.findUnique({
-      where: { id },
+    const existing = await prisma.campaign.findFirst({
+      where: {
+        id,
+        userId: session.user.id,
+      },
     });
 
     if (!existing) {
