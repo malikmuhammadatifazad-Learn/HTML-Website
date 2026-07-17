@@ -42,9 +42,13 @@ export const authOptions: NextAuthOptions = {
           return null
         }
 
+        if (!user.password) {
+          return null
+        }
+
         const passwordMatch = await bcrypt.compare(
           credentials.password,
-          user.password || ''
+          user.password
         )
 
         if (!passwordMatch) {
@@ -76,4 +80,5 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/login',
   },
+  secret: process.env.NEXTAUTH_SECRET,
 }
